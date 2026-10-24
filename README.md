@@ -12,9 +12,41 @@ Connect your AI assistant (Claude Desktop, Claude Code, or any [MCP](https://mod
 
 - An Optscan **Basic** or **Pro** plan (the 14-day trial also works).
 - **Basic:** 300 tool calls per day. **Pro and trial:** unlimited.
-- macOS (Apple Silicon or Intel) or Linux (x86-64).
+- macOS (Apple Silicon or Intel) or Linux (x86-64). Windows is not supported yet.
 
-## 1. Install
+## Quick setup (let your AI do it)
+
+1. Log in to Optscan, open **Account**, and click **Generate token**. Copy the token.
+2. Paste one of these prompts into your assistant. (The Optscan reveal screen shows the same prompts with your token already filled in.)
+
+**Claude Code or Codex** (it installs everything itself). Replace `<TOKEN>` with your token:
+
+```text
+Set up the Optscan MCP server for me on this computer.
+1. Detect my OS and CPU (macOS Apple Silicon, macOS Intel, or Linux x86-64). If it is anything else, stop and tell me it is not supported yet.
+2. Download the matching binary (optscan-mcp-darwin-arm64, optscan-mcp-darwin-amd64 or optscan-mcp-linux-amd64) and SHA256SUMS from https://github.com/optscan-labs/optscan-mcp-releases/releases/latest/download/ and verify the checksum.
+3. Install it to ~/.local/bin/optscan-mcp (create the folder if needed, no sudo) and make it executable.
+4. Register it as an MCP server named "optscan" in this tool with the environment variable OPTSCAN_TOKEN set to <TOKEN>. For Claude Code run: claude mcp add optscan --scope user -e OPTSCAN_TOKEN=<TOKEN> -- <full path to the binary>. For Codex run: codex mcp add optscan --env OPTSCAN_TOKEN=<TOKEN> -- <full path to the binary>.
+5. Tell me what to restart and give me one example question to test it, like "What was Tesla's call/put volume over the last two weeks?"
+Only do these steps. Do not change anything else on my computer.
+```
+
+**Claude Desktop** (it walks you through; your token never goes into the chat):
+
+```text
+I want to set up the Optscan MCP server in Claude Desktop. Walk me through it one step at a time and wait for me to say "done" before the next step. First ask whether my computer is a Mac with Apple silicon, an Intel Mac, or something else (if it is not a Mac, tell me it is not supported yet). Then:
+1. Give me the download link for my Mac from https://github.com/optscan-labs/optscan-mcp-releases/releases/latest (file optscan-mcp-darwin-arm64 or optscan-mcp-darwin-amd64) and the Terminal commands to put it in ~/.local/bin and make it runnable.
+2. Tell me how to open Claude Desktop's config (Settings, Developer, Edit Config) and give me the JSON to paste, using the real full path to the file, with OPTSCAN_TOKEN set to YOUR_TOKEN_HERE. I will replace that with my token myself. Never ask me to paste my token into this chat.
+3. Tell me to restart Claude Desktop and how to test it.
+```
+
+> The Claude Code and Codex prompt contains your token, so it will appear in that tool's local history. The token is read-only, and you can revoke it any time on the Account page.
+
+Prefer to do it yourself? Follow the manual steps below.
+
+## Manual setup
+
+### 1. Install
 
 Pick the line for your computer. It downloads the program and makes it runnable.
 
@@ -40,7 +72,7 @@ sudo curl -fL -o /usr/local/bin/optscan-mcp https://github.com/optscan-labs/opts
 
 To check the download, compare its SHA-256 with `SHA256SUMS` on the [release page](https://github.com/optscan-labs/optscan-mcp-releases/releases/latest): `shasum -a 256 /usr/local/bin/optscan-mcp`.
 
-## 2. Create a token
+### 2. Create a token
 
 1. Log in to Optscan and open **Account**.
 2. In **Personal Access Tokens**, enter a name (for example "Claude Desktop") and click **Generate token**.
@@ -48,7 +80,7 @@ To check the download, compare its SHA-256 with `SHA256SUMS` on the [release pag
 
 The Account page shows the two configuration snippets below with your token already filled in, so you can copy them from there.
 
-## 3. Connect your assistant
+### 3. Connect your assistant
 
 **Claude Code**
 
