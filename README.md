@@ -105,6 +105,13 @@ claude mcp add optscan --scope user -e OPTSCAN_TOKEN=<your token> -- /usr/local/
 
 After restarting, your assistant should list the Optscan tools below.
 
+### Stop the permission prompts
+
+Every Optscan tool is read-only, so it is safe to allow them all.
+
+- **Claude Desktop:** when it asks to use a tool, choose **Always allow**.
+- **Claude Code:** run `/permissions` and add the rule `mcp__optscan`, or add `"mcp__optscan"` to `permissions.allow` in `~/.claude/settings.json`.
+
 ## What it can do
 
 | Tool | What it does | Plan |
