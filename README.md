@@ -36,7 +36,7 @@ Only do these steps. Do not change anything else on my computer.
 ```text
 I want to set up the Optscan MCP server in Claude Desktop. Walk me through it one step at a time and wait for me to say "done" before the next step. First ask whether my computer is a Mac with Apple silicon, an Intel Mac, or something else (if it is not a Mac, tell me it is not supported yet). Then:
 1. Give me the download link for my Mac from https://github.com/optscan-labs/optscan-mcp-releases/releases/latest (file optscan-mcp-darwin-arm64 or optscan-mcp-darwin-amd64) and the Terminal commands to put it in ~/.local/bin and make it runnable.
-2. Tell me how to open Claude Desktop's config (Settings, Developer, Edit Config) and give me the JSON to paste, using the real full path to the file, with OPTSCAN_TOKEN set to YOUR_TOKEN_HERE. I will replace that with my token myself. Never ask me to paste my token into this chat.
+2. Give me ONE Terminal command that prints the complete Claude Desktop config JSON with my real home folder filled in. Inside the command write the path as "$HOME/.local/bin/optscan-mcp" so my shell fills it in; never guess or type a username, and never use placeholders like /Users/yourname. Set OPTSCAN_TOKEN to YOUR_TOKEN_HERE in the printed JSON. I will copy the printed output, replace YOUR_TOKEN_HERE with my token myself, and paste it into Claude Desktop's config (Settings, Developer, Edit Config). If my config already has other servers, tell me how to add just the "optscan" entry. Never ask me to paste my token into this chat.
 3. Tell me to restart Claude Desktop and how to test it.
 ```
 
